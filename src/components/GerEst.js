@@ -1,23 +1,37 @@
-import axios from 'axios';
+import axios from "axios";
 
-const getToken = async () => {
-  const url = "https://gerenciador-estoque-prod.onrender.com/api/token";
-  
-  // Dados para autenticação
-  const data = {
-    username: 'seu_usuario',
-    password: 'sua_senha',
-  };
+const api = axios.create({
+  baseURL: "https://gerenciador-estoque-prod.onrender.com",
+});
 
-  try {
-    const response = await axios.post(url, data);
-    const token = response.data.access; // A resposta geralmente contém o token no campo 'access'
-    console.log('Token:', token);
-    
-    // Você pode armazenar o token e usá-lo para outras requisições
-  } catch (error) {
-    console.error('Erro ao obter o token:', error);
+// Adicionar o token JWT em todas as requisições
+api.interceptors.request.use(async (config) => {
+  const token = localStorage.getItem("accessToken");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-};
+  return config;
+});
 
-getToken();
+// Atualizar o token automaticamente
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response.status === 401 && error.response.data.code === "token_not_valid") {
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (refreshToken) {
+        const { data } = await axios.post("/api/token/refresh/", {
+          refresh: refreshToken,
+        });
+        localStorage.setItem("accessToken", data.access);
+        error.config.headers.Authorization = `Bearer ${data.access}`;
+        return axios(error.config);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+
+
+export default api;
