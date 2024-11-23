@@ -42,11 +42,13 @@ const LoginForm = () => {
       <img
   src="/assets/skeleton.png"
   alt="Skeleton Illustration"
-  className="login-image"
-/>
+  className="login-image"/>
+      <div className="login-slogan">
         <h2>Code Team</h2>
         <p>Sistema de Gerenciamento de Estoque</p>
       </div>
+      </div>
+
       <div className="login-right">
         <form onSubmit={handleSubmit} className="login-form">
           <h3>Faça login na sua conta</h3>
@@ -57,7 +59,7 @@ const LoginForm = () => {
             name="username"
             id="username"
             value={formData.username}
-            onChange={handleInputChange}
+            onChange={handleInputChange} placeholder='Digite seu usuário'
             required
           />
           <label htmlFor="password">Senha</label>
@@ -66,23 +68,16 @@ const LoginForm = () => {
             name="password"
             id="password"
             value={formData.password}
-            onChange={handleInputChange}
+            onChange={handleInputChange} placeholder='**********'
             required
           />
-          <div className="show-password">
-            <input
-              type="checkbox"
-              id="showPassword"
-              onChange={() => setShowPassword(!showPassword)}
-            />
-            <label htmlFor="showPassword">Mostrar senha</label>
-          </div>
           <button type="submit" className="login-button">Login</button>
           <p className="login-footer">
             Ainda não tem cadastro? <a href="/register">Criar uma conta</a>
           </p>
         </form>
       </div>
+      
     </div>
   );
 };
