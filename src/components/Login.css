@@ -47,7 +47,8 @@
   }
   
   .login-form input {
-    width: 100%;
+    display: flex;
+    width: -webkit-fill-available;
     padding: 8px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
