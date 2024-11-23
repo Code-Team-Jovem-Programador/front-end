@@ -32,6 +32,44 @@ api.interceptors.response.use(
   }
 );
 
+//Conexão para ver produtos
+api.get("/produtos/")
+  .then((response) => console.log(response.data))
+  .catch((error) => console.error(error));
+
+//Conexão para criação de produto
+api.post("/produtos/", {
+  nome: "Produto A",
+  descricao: "Descrição do Produto A",
+  preco: 50.0,
+})
+  .then((response) => console.log("Produto criado:", response.data))
+  .catch((error) => console.error(error));
+
+//Conexão para listar produtos
+api.get("/produtos/listar/")
+  .then((response) => console.log("Produtos:", response.data))
+  .catch((error) => console.error(error));
+
+//Conexão para pesquisa de produto por id
+api.get("/produtos/1/")
+  .then((response) => console.log("Produto:", response.data))
+  .catch((error) => console.error(error));
+
+//Conexão para exoprtar tabela em CSV
+api.post("/export/csv/")
+  .then((response) => console.log("Exportado para CSV:", response.data))
+  .catch((error) => console.error(error));
+
+//Conexão para exportar tabela em XLSX
+api.post("/export/xlsx/")
+  .then((response) => console.log("Exportado para XLSX:", response.data))
+  .catch((error) => console.error(error));
+
+//Conexão para exportar tabela em PDF
+api.post("/export/pdf/")
+  .then((response) => console.log("Exportado para PDF:", response.data))
+  .catch((error) => console.error(error));
 
 
 export default api;

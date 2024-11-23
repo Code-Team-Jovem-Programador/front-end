@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css'; // Importa os estilos
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Hook do React Router para navegar
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,8 +19,9 @@ const LoginForm = () => {
         password,
       });
       const token = response.data.access;
-      localStorage.setItem('token', token); // Armazena o token no localStorage
+      localStorage.setItem('accessToken', token); // Armazena o token no localStorage
       alert('Login bem-sucedido!');
+      navigate('/produtos'); // Redireciona para VerProdutos
     } catch (error) {
       setError('Erro ao fazer login. Verifique suas credenciais.');
     }
