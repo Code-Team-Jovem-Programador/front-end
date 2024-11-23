@@ -3,38 +3,26 @@ import axios from 'axios';
 import './Login.css'; // Importa os estilos
 
 const LoginForm = () => {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.get();
-      const users = response.data;
-  
-      // Verifica se o usuário existe
-      const user = users.find(
-        (u) =>
-          u.username === formData.username && u.password === formData.password
-      );
-  
-      if (user) {
-        alert('Login realizado com sucesso!');
-        console.log('Usuário autenticado:', user);
-      } else {
-        alert('Usuário ou senha incorretos.');
-      }
+      const response = await axios.post('https://gerenciador-estoque-prod.onrender.com/api/token', {
+        username,
+        password,
+      });
+      const token = response.data.access;
+      localStorage.setItem('token', token); // Armazena o token no localStorage
+      alert('Login bem-sucedido!');
     } catch (error) {
-      console.error('Erro ao conectar na API:', error);
-      alert('Erro ao conectar no servidor.');
+      setError('Erro ao fazer login. Verifique suas credenciais.');
     }
   };
-  
 
   return (
     <div className="login-container">
@@ -48,7 +36,7 @@ const LoginForm = () => {
         <p>Sistema de Gerenciamento de Estoque</p>
       </div>
       <div className="login-right">
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleLogin} className="login-form">
           <h3>Faça login na sua conta</h3>
           <p>Confira o que está acontecendo com o seu negócio</p>
           <label htmlFor="username">Usuário</label>
@@ -56,8 +44,8 @@ const LoginForm = () => {
             type="text"
             name="username"
             id="username"
-            value={formData.username}
-            onChange={handleInputChange}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <label htmlFor="password">Senha</label>
@@ -65,8 +53,8 @@ const LoginForm = () => {
             type={showPassword ? 'text' : 'password'}
             name="password"
             id="password"
-            value={formData.password}
-            onChange={handleInputChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <div className="show-password">
