@@ -9,6 +9,7 @@ import BuscarProdutoPorId from './components/BuscarProdutoPorId';
 import ExportarCsv from './components/ExportarCsv';
 import ExportarPdf from './components/ExportarCsv';
 import ExportarXlsx from './components/ExportarXlsx';
+import RegisterForm from './components/RegisterForm';
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm/>} />
         <Route path="/produtos" element={<VerProdutos />} />
         <Route path="/criarproduto" element={<CriarProduto/>} />
         <Route path="/buscarproduto" element={<BuscarProdutoPorId/>} />
