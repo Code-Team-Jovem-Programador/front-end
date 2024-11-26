@@ -11,17 +11,26 @@ const VerProdutos = () => {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
-      .then((response) => setProdutos(response.data))
-      .catch((error) => console.error(error));
+      .then((response) => {
+        console.log(response.data); // Verifique os dados retornados pela API
+        setProdutos(response.data);
+      })
+      .catch((error) => console.error("Erro na requisição:", error));
   }, []);
 
   return (
     <div>
       <h1>Produtos</h1>
       <ul>
-        {produtos.map((produto) => (
-          <li key={produto.id}>{produto.nome}</li>
-        ))}
+        {produtos.length > 0 ? (
+          produtos.map((produto) => (
+            <li key={produto.id}>
+              {produto.nome} | {produto.descricao} | {produto.quantidades} | {produto.preco} | {produto.categoria}
+            </li>
+          ))
+        ) : (
+          <li>Nenhum produto encontrado.</li>
+        )}
       </ul>
     </div>
   );
