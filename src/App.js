@@ -1,15 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <LoginForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/register" element={<LoginForm />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
+
+
+
+
+
