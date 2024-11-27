@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Register.css"; 
+import "../components/Register.css"; 
 import axios from "axios"; 
 
 
@@ -36,6 +36,7 @@ const Register = () => {
   return (
     <div className="register-container">
       <div className="register-form">
+        <img src="./public/skeleton.png" />
         <h1>Cadastre sua nova conta</h1>
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
