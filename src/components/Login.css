@@ -109,14 +109,15 @@
 }
 
 .login-footer {
+  color: var(--primary-light);
   margin-top: 200px;
   text-align: center;
-  font-weight: bolder;
 }
 
 .login-footer a {
   color: var(--primary-color);
   text-decoration: none;
+  font-weight: bolder;
 }
 
 .login-footer a:hover {
