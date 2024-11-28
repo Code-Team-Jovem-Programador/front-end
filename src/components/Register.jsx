@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../components/Register.css"; 
-import axios from "axios"; 
-
-
+import axios from "axios";
+import "./Register.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -35,40 +33,60 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      <div className="register-form">
-        <img src="./public/skeleton.png" />
-        <h1>Cadastre sua nova conta</h1>
-        {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleSubmit}>
+      <div className="register-left">
+        <img
+          src="/assets/skeleton.png"
+          alt="Skeleton Illustration"
+          className="register-image"
+        />
+        <div className="register-slogan">
+          <h2>Code Team</h2>
+          <p>Sistema de Gerenciamento de Estoque</p>
+        </div>
+      </div>
+
+      <div className="register-right">
+        <form onSubmit={handleSubmit} className="register-form">
+          <h3>Cadastre sua nova conta</h3>
+          <p>Entre no nosso sistema e gerencie seu negócio</p>
+          {error && <p className="error-message">{error}</p>}
+          <label htmlFor="username">Usuário</label>
           <input
             type="text"
             name="username"
-            placeholder="Usuário"
+            id="username"
+            placeholder="Digite seu usuário"
             value={formData.username}
             onChange={handleInputChange}
             required
           />
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            id="email"
+            placeholder="Digite seu email"
             value={formData.email}
             onChange={handleInputChange}
             required
           />
+          <label htmlFor="password">Senha</label>
           <input
             type="password"
             name="password"
-            placeholder="Senha"
+            id="password"
+            placeholder="**********"
             value={formData.password}
             onChange={handleInputChange}
             required
           />
-          <button type="submit">Registrar</button>
+          <button type="submit" className="register-button">
+            Cadastrar
+          </button>
+          <p className="register-footer">
+            Já tem uma conta? <a href="/login">Entrar</a>
+          </p>
         </form>
-        <p>
-          Já tem uma conta? <a href="/login">Entrar</a>
-        </p>
       </div>
     </div>
   );
