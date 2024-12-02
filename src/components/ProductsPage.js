@@ -1,83 +1,101 @@
-import React, { useState, useEffect } from "react";
-import "./ProductsPage.css"; 
-import axios from "axios"; 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./ProductsPage.css";
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState([]); // Lista de produtos
-  const [search, setSearch] = useState(""); // Campo de busca
-  const [showDownloadPopup, setShowDownloadPopup] = useState(false); // Estado do pop-up de download
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  // Requisição ao backend para buscar produtos
+  // Carregar produtos
   useEffect(() => {
     axios
-      .get("https://gerenciador-estoque-prod.onrender.com/produtos/") 
-      .then((response) => setProducts(response.data))
-      .catch((error) => console.error("Erro ao buscar produtos:", error));
+      .get("https://gerenciador-estoque-prod.onrender.com/produtos/listar")
+      .then((response) => {
+        setProducts(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Erro ao carregar produtos:", error);
+        setError("Erro ao carregar produtos.");
+        setLoading(false);
+      });
   }, []);
 
-  // Filtrar produtos com base na busca
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // Deletar produto
+  const handleDelete = (id) => {
+    axios
+      .delete(`https://gerenciador-estoque-prod.onrender.com/produtos/${id}`)
+      .then(() => {
+        setProducts(products.filter((product) => product.id !== id));
+      })
+      .catch((error) => {
+        console.error("Erro ao deletar produto:", error);
+        alert("Erro ao deletar produto.");
+      });
+  };
+
+  // Exportar produtos
+  const handleExport = (format) => {
+    const routes = {
+      csv: "https://gerenciador-estoque-prod.onrender.com/export/csv/",
+      xlsx: "https://gerenciador-estoque-prod.onrender.com/export/xlsx/",
+      pdf: "https://gerenciador-estoque-prod.onrender.com/export/pdf/",
+    };
+
+    axios
+      .post(routes[format], {}, { responseType: "blob" })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `produtos.${format}`);
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((error) => {
+        console.error(`Erro ao exportar ${format}:`, error);
+        alert(`Erro ao exportar ${format}.`);
+      });
+  };
+
+  // Redirecionar para cadastro
+  const handleAddProduct = () => {
+    navigate("/add-product");
+  };
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="products-container">
-      <h1 className="products-title">Produtos</h1>
-
-      {/* Campo de busca */}
+      <h1>Produtos</h1>
       <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Pesquisar"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="search-input"
-        />
-        <button className="search-button">🔍</button>
+        <input type="text" placeholder="Pesquisar..." />
       </div>
-
-      {/* Lista de produtos */}
-      <div className="products-list">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
-            <div key={product.id} className="product-item">
-              <span>{product.name}</span>
-              <div className="product-actions">
-                <button className="edit-button">Editar</button>
-                <button className="delete-button">Excluir</button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="no-products">Nenhum produto cadastrado</p>
-        )}
-      </div>
-
-      {/* Botões principais */}
-      <div className="main-buttons">
-        <button className="download-button" onClick={() => setShowDownloadPopup(true)}>
-          Download
-        </button>
-        <button className="add-button">Adicionar</button>
-      </div>
-
-      {/* Pop-up de download */}
-      {showDownloadPopup && (
-        <div className="popup-overlay">
-          <div className="popup">
-            <h2>Download</h2>
-            <button className="popup-button">PDF</button>
-            <button className="popup-button">Excel</button>
-            <button className="popup-button">CSV</button>
-            <button
-              className="close-popup-button"
-              onClick={() => setShowDownloadPopup(false)}
-            >
-              Fechar
-            </button>
-          </div>
-        </div>
+      {products.length > 0 ? (
+        <ul className="product-list">
+          {products.map((product) => (
+            <li key={product.id} className="product-item">
+              {product.nome} - {product.quantidade}
+              <button onClick={() => handleDelete(product.id)}>Excluir</button>
+              <button onClick={() => navigate(`/edit-product/${product.id}`)}>
+                Editar
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Nenhum produto encontrado.</p>
       )}
+      <div className="actions">
+        <button onClick={() => handleExport("csv")}>Exportar CSV</button>
+        <button onClick={() => handleExport("xlsx")}>Exportar XLS</button>
+        <button onClick={() => handleExport("pdf")}>Exportar PDF</button>
+        <button onClick={handleAddProduct}>Adicionar Produto</button>
+      </div>
     </div>
   );
 };
