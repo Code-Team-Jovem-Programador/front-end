@@ -56,7 +56,7 @@ api.get("/produtos/1/")
   .then((response) => console.log("Produto:", response.data))
   .catch((error) => console.error(error));
 
-//Conexão para exoprtar tabela em CSV
+//Conexão para exportar tabela em CSV
 api.post("/export/csv/")
   .then((response) => console.log("Exportado para CSV:", response.data))
   .catch((error) => console.error(error));

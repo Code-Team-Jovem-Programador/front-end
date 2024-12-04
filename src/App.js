@@ -10,6 +10,7 @@ import ExportarCsv from './components/ExportarCsv';
 import ExportarPdf from './components/ExportarCsv';
 import ExportarXlsx from './components/ExportarXlsx';
 import RegisterForm from './components/RegisterForm';
+import ActivateAccount from './components/ActivateAcc'
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/downloadcsv" element={<ExportarCsv/>} />
         <Route path="/downloadpdf" element={<ExportarPdf/>} />
         <Route path="/downloadxlsx" element={<ExportarXlsx/>} />
+        <Route path="/activate" element={<ActivateAccount/>} />
       </Routes>
     </Router>
   );
