@@ -12,7 +12,11 @@ const ActivateAccount = () => {
             try {
                 const response = await axios.get(
                     `http://127.0.0.1:8000/api/activate/${uidb64}/${token}/` 
-                );
+                );            
+            // try {
+            //     const response = await axios.get(
+            //         `https://gerenciador-estoque-prod.onrender.com/api/activate/${uidb64}/${token}/` 
+            //     );
                 alert("Conta ativada com sucesso!");
             } catch (error) {
                 alert("Erro ao ativar conta. Link inválido ou expirado.");
