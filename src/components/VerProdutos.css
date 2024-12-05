@@ -1,118 +1,155 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #631E4D;
+  --secondary-color: #FFE6C9;
+  --primary-light: #828282;
+  --primary-dark: #525252;
+}
+
 /* Container principal */
-.products-page {
-    font-family: 'Arial', sans-serif;
-    background-color: #fdf7f2;
-    border-radius: 8px;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Cabeçalho com pesquisa */
-  .products-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .products-header h1 {
-    font-size: 28px;
-    color: #8d2346;
-  }
-  
-  .search-container {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px 10px;
-  }
-  
-  .search-input {
-    border: none;
-    outline: none;
-    padding: 5px;
-    font-size: 14px;
-    width: 200px;
-  }
-  
-  .search-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 5px;
-    color: #8d2346;
-  }
-  
-  /* Lista de produtos */
-  .products-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .product-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .product-item:last-child {
-    border-bottom: none;
-  }
-  
-  .product-actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .edit-button, .delete-button {
-    padding: 8px 16px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .edit-button {
-    background-color: #f0c419;
-    color: white;
-  }
-  
-  .delete-button {
-    background-color: #e74c3c;
-    color: white;
-  }
-  
-  /* Rodapé com botões */
-  .products-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .download-button, .add-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .download-button {
-    background-color: #8d2346;
-    color: white;
-  }
-  
-  .add-button {
-    background-color: #2ecc71;
-    color: white;
-  }
-  
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho com imagem e cor de fundo */
+.products-header {
+  position: relative;
+  width: 100%; 
+  background-color: var(--secondary-color); 
+}
+
+.products-header img {
+  width: 100%; /* A imagem ocupa 100% da largura do cabeçalho */
+  height: auto; /* Garante que a altura seja proporcional à largura */
+  display: block; /* Remove qualquer espaço em branco abaixo da imagem */
+}
+
+/* Nav dentro do cabeçalho */
+nav {
+  position: absolute; /* Posiciona o texto sobre a imagem */
+  top: 50%; /* Alinha verticalmente ao meio */
+  left: 50%; /* Alinha horizontalmente ao centro */
+  transform: translate(-50%, -50%); /* Ajusta para centralizar exatamente */
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  z-index: 1; /* Garante que o texto fique sobre a imagem */
+}
+
+nav h1 {
+  font-size: 28px;
+  color: var(--primary-color);
+  text-align: center;
+  padding: 10px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center; /* Centraliza a barra de pesquisa na tela */
+  width: 100%;
+  max-width: 700px; /* Limita o tamanho máximo da barra de pesquisa */
+  margin: 0 auto;  /* Centraliza horizontalmente */
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.search-input {
+  padding: 5px;
+  font-size: 15px;
+  width: 100%;  /* Barra de pesquisa ocupa 80% do espaço */
+}
+
+.botao img {
+  width: 30px; /* Ajuste do tamanho da imagem */
+  height: 30px;
+  padding: 4px;
+}
+
+.search-button {
+  width: 50px;
+  height: 40px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  color: #8d2346;
+}
+
+/* Lista de produtos */
+.products-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-item:last-child {
+  border-bottom: none;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button, .delete-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.delete-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Rodapé com botões */
+.products-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.download-button, .add-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.download-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.add-button {
+  background-color: var(--primary-color);
+  color: white;
+}

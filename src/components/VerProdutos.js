@@ -3,7 +3,7 @@ import axios from "axios";
 import "./VerProdutos.css"; // Estilo da página
 import "./ExportarPopup.css"; // Estilo do pop-up
 
-const VerProdutos = () => {
+const VerProdutos = () => { 
   const [produtos, setProdutos] = useState([]); // Lista de produtos
   const [showPopup, setShowPopup] = useState(false); // Controle do pop-up
 
@@ -62,16 +62,24 @@ const VerProdutos = () => {
   };
 
   return (
-    <div className="products-page">
+    <div className="container">
       {/* Cabeçalho da página */}
       <header className="products-header">
-        <h1>Produtos</h1>
-        <div className="search-container">
-          <input type="text" placeholder="Pesquisar" className="search-input" />
-          <button className="search-button">🔍</button>
-        </div>
+        <img src="/cabecalho.png"></img>
+        <nav>
+          <h1>Produtos</h1>
+        </nav>
       </header>
-
+      {/* fim do cabeçalho */}
+      {/* barra de pesquisa */}
+      <div className="search-container">
+          <input type="text" placeholder="Pesquisar" className="search-input" />
+          <div className="botao">
+            <button className="search-button">
+              <img src="/pesquisar.png" alt="Imagem do botão"></img>
+            </button>
+          </div>
+      </div>
       {/* Lista de produtos */}
       <main className="products-list">
         {produtos.length > 0 ? (

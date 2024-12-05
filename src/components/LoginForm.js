@@ -20,7 +20,6 @@ const LoginForm = () => {
       });
       const token = response.data.access;
       localStorage.setItem('accessToken', token); // Armazena o token no localStorage
-      alert('Login bem-sucedido!');
       navigate('/produtos'); // Redireciona para VerProdutos
     } catch (error) {
       setError('Erro ao fazer login. Verifique suas credenciais.');
