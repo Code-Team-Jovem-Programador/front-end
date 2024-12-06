@@ -80,22 +80,26 @@ const VerProdutos = () => {
             </button>
           </div>
       </div>
-      {/* Lista de produtos */}
-      <main className="products-list">
-        {produtos.length > 0 ? (
-          produtos.map((produto) => (
-            <div key={produto.id} className="product-item">
-              <span>{produto.nome}</span>
-              <div className="product-actions">
-                <button className="edit-button">Editar</button>
-                <button className="delete-button">Excluir</button>
+      
+            {/* Lista de produtos */}
+      <div className="espace">
+        <main className="products-list">
+          {produtos.length > 0 ? (
+            produtos.map((produto) => (
+              <div key={produto.id} className="product-item">
+                <span>{produto.nome}</span>
+                <div className="product-actions">
+                  <button className="edit-button">Editar</button>
+                  <button className="delete-button">Excluir</button>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p>Nenhum produto encontrado.</p>
-        )}
-      </main>
+            ))
+          ) : (
+            <p>Nenhum produto encontrado.</p>
+          )}
+        </main>
+      </div>
+  
 
       {/* Rodapé com botões */}
       <footer className="products-footer">
