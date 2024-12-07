@@ -1,4 +1,15 @@
 /* Pop-up container */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Parkinsans:wght@300..800&display=swap');
+
+:root {
+  --primary-color: #631E4D;
+  --secondary-color: #FFE6C9;
+}
+
+* {
+  font-family: "Merriweather", serif;
+}
+
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -13,7 +24,7 @@
   }
   
   .popup-content {
-    background-color: #fdf7f2;
+    background-color: vwhite;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
@@ -23,7 +34,7 @@
   
   .popup-title {
     font-size: 20px;
-    color: #8d2346;
+    color: var(--primary-color);
     margin-bottom: 15px;
   }
   
@@ -34,7 +45,7 @@
   }
   
   .popup-button {
-    background-color: #8d2346;
+    background-color: var(--primary-color);
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -45,11 +56,11 @@
   }
   
   .popup-button:hover {
-    background-color: #a63e5b;
+    background-color: #812c66;
   }
   
   .close-button {
-    background-color: #e74c3c;
+    background-color: var(--primary-color);
     color: white;
     padding: 8px 12px;
     font-size: 14px;

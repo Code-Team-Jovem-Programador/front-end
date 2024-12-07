@@ -8,7 +8,7 @@ const VerProdutos = () => {
   const [showPopup, setShowPopup] = useState(false); // Controle do pop-up
 
   // Buscar produtos ao carregar o componente
-  useEffect(() => {
+  useEffect(() => { 
     axios
       .get("https://gerenciador-estoque-prod.onrender.com/api/produtos/", {
         headers: {
@@ -72,15 +72,17 @@ const VerProdutos = () => {
       </header>
       {/* fim do cabeçalho */}
       {/* barra de pesquisa */}
-      <div className="search-container">
+      <div className="search-wrapper">
+        <img src="/caveirinha.png" className="caveirinha-icon" alt="Caveirinha" />
+        <div className="search-container">
           <input type="text" placeholder="Pesquisar" className="search-input" />
           <div className="botao">
             <button className="search-button">
-              <img src="/pesquisar.png" alt="Imagem do botão"></img>
+              <img src="/pesquisar.png" alt="Imagem do botão" />
             </button>
           </div>
+        </div>
       </div>
-      
             {/* Lista de produtos */}
       <div className="espace">
         <main className="products-list">

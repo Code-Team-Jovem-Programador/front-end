@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Parkinsans:wght@300..800&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Merriweather", serif;
 }
 
 :root {
@@ -57,24 +60,45 @@ nav h1 {
   padding: 10px;
 }
 
+/* Envoltório da barra de pesquisa */
+.search-wrapper {
+  display: flex;
+  align-items: center; /* Alinha verticalmente */
+  justify-content: flex-start; /* Alinha horizontalmente à esquerda */
+  width: 100%; /* Ocupa toda a largura */
+  max-width: 700px; /* Limita o tamanho máximo */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  margin-top: 20px; /* Espaço superior */
+  gap: 30px; /* Espaço entre a caveirinha e a barra */
+}
+
+/* Caveirinha */
+.caveirinha-icon {
+  width: 35px;
+  height: 30px;
+}
+
 /* Barra de pesquisa */
 .search-container {
   display: flex;
-  justify-content: center; /* Centraliza a barra de pesquisa na tela */
-  width: 100%;
-  max-width: 700px; /* Limita o tamanho máximo da barra de pesquisa */
-  margin: 0 auto;  /* Centraliza horizontalmente */
+  align-items: center; /* Alinha verticalmente os itens */
   background-color: var(--primary-color);
-  border-radius: 8px;
-  padding: 5px;
-  margin-top: 20px;
+  border-radius: 5px;
+  padding: 3px 10px;
+  flex: 1; /* Faz a barra de pesquisa ocupar o espaço restante */
 }
 
 .search-input {
   padding: 5px;
   font-size: 15px;
-  width: 100%;  /* Barra de pesquisa ocupa 80% do espaço */
+  width: 100%;  
+  border: none;
 }
+
+.search-input:focus {
+  outline: none; /* Remove a borda de foco */
+}
+
 
 .botao img {
   width: 30px; /* Ajuste do tamanho da imagem */
@@ -117,7 +141,8 @@ nav h1 {
   gap: 10px;
 }
 
-.edit-button, .delete-button {
+.edit-button,
+.delete-button {
   padding: 8px 16px;
   font-size: 14px;
   border: none;
@@ -145,7 +170,8 @@ nav h1 {
   gap: 10px;
 }
 
-.download-button, .add-button {
+.download-button,
+.add-button {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
