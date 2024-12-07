@@ -71,5 +71,15 @@ api.post("/export/pdf/")
   .then((response) => console.log("Exportado para PDF:", response.data))
   .catch((error) => console.error(error));
 
+//Conexão para resetar a senha via e-mail
+api.post("/password-reset/")
+  .then((response) => console.log("Solicitado Redefinição de senhe via e-mail", response.data))
+  .catch((error) => console.error(error));
+
+//Conexão para confirmação do reset de senha
+api.post("password-reset-confirm/<uidb64>/<token>/")
+  .then((response) => console.log("Confirmação de redefinição de senha", response.data))
+  .catch((error) => console.error(error));
+
 
 export default api;
