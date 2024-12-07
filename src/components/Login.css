@@ -1,74 +1,118 @@
-/* Estrutura geral */
+/*Importação da fonte*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+/*Paleta de cores*/
+:root {
+  --primary-color: #631E4D;
+  --secondary-color: #FFE6C9;
+  --primary-light: #828282;
+  --primary-dark: #525252;
+}
+
+/*Tudo*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+/*Toda a tela*/
 .login-container {
   display: flex;
   height: 100vh;
 }
 
+/*Lado esquerdo*/
 .login-left {
   flex: 1;
-  background-color: #fde9d7;
+  background-color: var(--secondary-color);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-  padding: 20px;
+  position: relative;
 }
 
+/*Imagem caveira*/
 .login-image {
-  max-width: 80%;
-  height: auto;
+  width: 104%;
+  height: 100%;
 }
 
+/*Code Team...*/
+.slogan {
+  position: absolute;
+  top: 88%;
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-47%, -50%); /* Ajuste final para centralização */
+  font-size: 1rem; /* Tamanho da fonte para o título */
+  color: var(--primary-color); /* Cor do título */
+}
+
+/*Espaco entre o titulo e o paragrafo do Code */
+.slogan p {
+  margin-top: 10px; /* Ajuste o valor conforme necessário */
+}
+
+/*Lado direito*/
 .login-right {
-  flex: 1;
+  flex: 0 0 46%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 80px;
 }
 
+/*caixa lado direito*/
 .login-form {
   width: 80%;
   max-width: 400px;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
 }
 
+/*Faça login na sua conta*/
 .login-form h3 {
   margin-bottom: 10px;
+  color: var(--primary-dark);  
+  font-size: 29px;
+  text-wrap: nowrap;
 }
 
+/*Subtitulo de Login*/
+.login-subtitle {
+  margin-bottom: 40px;
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+  text-wrap: nowrap;
+}
+
+/*espaço entre senha e label*/
 .login-form label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--primary-light);
 }
 
+/*Dentro do input*/
 .login-form input {
   display: flex;
-  width: -webkit-fill-available;
-  padding: 8px;
-  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 25px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 9px;
+  color: var(--primary-dark);
+  outline: none;
 }
 
-.show-password {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 15px;
-}
-
+/*Botão de Login*/
 .login-button {
   width: 100%;
   padding: 10px;
   background-color: #742973;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 9px;
   font-size: 16px;
   cursor: pointer;
   display: flex;
@@ -77,14 +121,21 @@
   gap: 10px;
   position: relative;
 }
-
+/*Cor do botão qnd coloca o mouse*/
 .login-button:hover {
   background-color: #581c54;
 }
-
+/*Ainda n tem cadastro*/
 .login-footer {
-  margin-top: 10px;
+  margin-top: 40%;
   text-align: center;
+  color: var(--primary-dark);
+}
+
+/*Link para cadastro*/
+.login-footer a {
+  text-decoration: none;
+  color: var(--primary-color);
 }
 
 /* Spinner moderno */
@@ -99,6 +150,7 @@
   animation: modern-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+/*regra do CSS usada para criar animações*/
 @keyframes modern-spin {
   0% {
     transform: rotate(0deg);
@@ -107,3 +159,4 @@
     transform: rotate(360deg);
   }
 }
+

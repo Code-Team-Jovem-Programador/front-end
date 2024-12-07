@@ -38,20 +38,23 @@ const LoginForm = () => {
           alt="Skeleton Illustration"
           className="login-image"
         />
-        <h2>Code Team</h2>
-        <p>Sistema de Gerenciamento de Estoque</p>
+        <div className='slogan'>
+          <h2>Code Team</h2>
+          <p>Sistema de Gerenciamento de Estoque</p>
+        </div>
       </div>
       <div className="login-right">
         <form onSubmit={handleLogin} className="login-form">
           <h3>Faça login na sua conta</h3>
-          <p>Confira o que está acontecendo com o seu negócio</p>
+          <p className="login-subtitle">Confira o que está acontecendo com o seu negócio</p>
+          
           <label htmlFor="username">Usuário</label>
           <input
             type="text"
             name="username"
             id="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)} placeholder='Digite seu usuário'
             required
           />
           <label htmlFor="password">Senha</label>
@@ -60,17 +63,9 @@ const LoginForm = () => {
             name="password"
             id="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)} placeholder='**********'
             required
           />
-          <div className="show-password">
-            <input
-              type="checkbox"
-              id="showPassword"
-              onChange={() => setShowPassword(!showPassword)}
-            />
-            <label htmlFor="showPassword">Mostrar senha</label>
-          </div>
           <button type="submit" className="login-button">
             {isLoading ? <span className="spinner"></span> : 'Login'}
           </button>
