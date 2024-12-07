@@ -8,10 +8,12 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Hook do React Router para navegar
+  const [isLoading, setIsLoading] = useState(false); // Estado para o loading
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Ativa o loading
 
     try {
       const response = await axios.post('https://gerenciador-estoque-prod.onrender.com/api/token', {
@@ -23,17 +25,19 @@ const LoginForm = () => {
       navigate('/produtos'); // Redireciona para VerProdutos
     } catch (error) {
       setError('Erro ao fazer login. Verifique suas credenciais.');
+    } finally {
+      setIsLoading(false); // Desativa o loading
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-left">
-      <img
-  src="/assets/skeleton.png"
-  alt="Skeleton Illustration"
-  className="login-image"
-/>
+        <img
+          src="/assets/skeleton.png"
+          alt="Skeleton Illustration"
+          className="login-image"
+        />
         <h2>Code Team</h2>
         <p>Sistema de Gerenciamento de Estoque</p>
       </div>
@@ -67,7 +71,9 @@ const LoginForm = () => {
             />
             <label htmlFor="showPassword">Mostrar senha</label>
           </div>
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" className="login-button">
+            {isLoading ? <span className="spinner"></span> : 'Login'}
+          </button>
           <p className="login-footer">
             Ainda não tem cadastro? <a href="/register">Criar uma conta</a>
           </p>
