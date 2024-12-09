@@ -48,6 +48,7 @@
 /*Espaco entre o titulo e o paragrafo do Code */
 .slogan p {
   margin-top: 10px; /* Ajuste o valor conforme necessário */
+  text-wrap: nowrap;
 }
 
 /*Lado direito*/
@@ -76,7 +77,7 @@
   margin-bottom: 10px;
   color: var(--primary-dark);  
   font-size:  1.81rem;
-  text-wrap: nowrap;
+
 }
 
 /*Subtitulo de Login*/
@@ -84,7 +85,7 @@
   margin-bottom: 40px;
   color: var(--primary-dark);
   font-size: 0.85rem;
-  text-wrap: nowrap;
+
 }
 
 /*espaço entre senha e label*/
@@ -160,28 +161,23 @@
     transform: rotate(360deg);
   }
 }
+
 @media (max-width: 500px) {
   .login-container {
     flex-direction: column;
   }
-  .login-left {
-    width: 100%;
-    position: relative;
-  }
 
   .login-image {
     width: 100%;
+    background-color: var(--secondary-color);
   }
 
   .slogan h2{
     font-size: 1.5em;
-    z-index: 10; /* Mantém o texto sobre a imagem */
   }
 
   .slogan p {
     font-size: 0.9em;
-    z-index: 10; /* Mantém o texto sobre a imagem */
-    text-wrap: nowrap;
   }
 
   .login-right {

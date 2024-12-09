@@ -33,6 +33,7 @@
   /*Code Team*/
   .register-slogan p {
     margin-top: 10px;
+    text-wrap: nowrap;
   }
   
   /*Lado direito*/
@@ -56,7 +57,6 @@
     margin-bottom: 10px;
     color: var(--primary-dark);
     font-size: 28px;
-    text-wrap: nowrap;
   }
 
   /*Subtitulo de cadastro*/
@@ -64,7 +64,6 @@
     margin-bottom: 40px;
     color: var(--primary-dark);
     font-size: 0.92rem;
-    text-wrap: nowrap;
   }
   
   /*espaço entre senha e label*/
@@ -113,18 +112,6 @@
     background-color: #581c54;
   }
   
-  /*Mensagem de erro de cadastro*/
-  .error-message {
-    color: rgb(153, 25, 25);
-    margin-bottom: 10px;
-  }
-  
-  /*Mensagem de sucesso de cadastro*/
-  .success-message {
-    color: rgb(8, 116, 8);
-    margin-bottom: 10px;
-  }
-  
   /* Spinner moderno */
 .spinner {
   display: inline-block;
@@ -152,4 +139,57 @@
   text-decoration: none;
   font-size: 16px;
   margin-left: 43%;
+}
+
+@media (max-width: 500px) {
+  .register-container {
+    flex-direction: column; /* Coloca os elementos em coluna */
+  }
+  .register-image {
+    width: 100%;
+    background-color: var(--secondary-color); /* Cor de fundo caso necessário */
+  }
+
+  .register-slogan h2 {
+    font-size: 1.4em; /* Ajusta o tamanho do texto */
+  }
+
+  .register-slogan p {
+    font-size: 0.8em;
+  }
+
+  .register-right {
+    width: 100%;
+    margin-top: 25px; /* Adiciona espaçamento entre as seções */
+  }
+
+  .register-form {
+    width: 100%; /* O formulário ocupa toda a largura */
+    padding: 40px; /* Reduz o padding para telas menores */
+  }
+
+  .register-form h3 {
+    font-size: 1.6em; /* Ajusta o tamanho do título */
+  }
+
+  .register-subtitle {
+    font-size: 0.83em; /* Ajusta o tamanho do subtítulo */
+  }
+
+  .register-form input {
+    padding: 10px; /* Reduz o preenchimento interno dos inputs */
+    font-size: 0.9em; /* Ajusta o tamanho da fonte */
+  }
+
+  .register-button {
+    font-size: 1em; /* Ajusta o tamanho do texto do botão */
+    padding: 10px; /* Mantém o botão acessível em telas menores */
+  }
+
+  .back-link {
+    font-size: 0.8em; /* Ajusta o tamanho do link */
+    margin-left: 0;
+    text-align: center; /* Centraliza o link */
+    display: block;
+  }
 }
