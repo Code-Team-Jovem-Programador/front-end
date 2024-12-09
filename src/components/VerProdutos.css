@@ -31,30 +31,29 @@
 .products-header {
   position: relative;
   width: 100%;
-  background-color: var(--secondary-color);
 }
 
 .products-header img {
   width: 100%; /* A imagem ocupa 100% da largura do cabeçalho */
-  height: auto; /* Garante que a altura seja proporcional à largura */
+  height: 60%; /* Garante que a altura seja proporcional à largura */
   display: block; /* Remove qualquer espaço em branco abaixo da imagem */
+  background-color: var(--secondary-color);
 }
 
 /* Nav dentro do cabeçalho */
 nav {
   position: absolute; /* Posiciona o texto sobre a imagem */
-  top: 50%; /* Alinha verticalmente ao meio */
+  top: 28%; /* Alinha verticalmente ao meio */
   left: 50%; /* Alinha horizontalmente ao centro */
   transform: translate(-50%, -50%); /* Ajusta para centralizar exatamente */
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1; /* Garante que o texto fique sobre a imagem */
 }
 
 nav h1 {
-  font-size: 28px;
+  font-size: 30px;
   color: var(--primary-color);
   text-align: center;
   padding: 10px;
@@ -178,6 +177,8 @@ nav h1 {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+  width: 11rem;
+  height: 3rem;
 }
 
 .download-button {
@@ -239,4 +240,8 @@ nav h1 {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  
 }
