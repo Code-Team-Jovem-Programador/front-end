@@ -9,9 +9,9 @@ import ExportarCsv from './components/ExportarCsv';
 import ExportarPdf from './components/ExportarCsv';
 import ExportarXlsx from './components/ExportarXlsx';
 import RegisterForm from './components/RegisterForm';
-import ActivateAccount from './components/ActivateAcc'
-import passwordReset from './components/passwordReset.js'
-
+import ActivateAccount from './components/ActivateAcc';
+import passwordReset from './components/passwordReset';
+import confirmPassword from './components/confirmPassword';
 
 const App = () => {
   return (

@@ -20,7 +20,7 @@ const VerProdutos = () => {
       <h1>Produtos</h1>
       <ul>
         {produtos.map((produto) => (
-          <li key={produto.id}>{produto.nome}</li>
+          <li key={produto.id}>{produto.nome} {produto.quantidades} {produto.descricao} {produto.preco} {produto.categoria}</li>
         ))}
       </ul>
     </div>
