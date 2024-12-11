@@ -69,8 +69,6 @@ const CriarProduto = () => {
             onChange={(e) => setProduto({ ...produto, descricao: e.target.value })}
             className="input-descricao"
           />
-
-
       <button type="submit" className="btn-criarProduto">
         Criar Produto
       </button>
