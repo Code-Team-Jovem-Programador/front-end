@@ -1,8 +1,10 @@
+import axios from "axios";
+
 const ExportarPdf = () => {
     const exportarPdf = () => {
       axios
-        .post(
-          "https://gerenciador-estoque-prod.onrender.com/api/export/pdf/",
+        .get(
+          "http://127.0.0.1:8000/api/export/pdf/",
           {},
           {
             headers: {

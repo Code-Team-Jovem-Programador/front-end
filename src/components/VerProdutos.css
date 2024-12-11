@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Parkinsans:wght@300..800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Merriweather", serif;
+}
+
+:root {
+  --primary-color: #631E4D;
+  --secondary-color: #FFE6C9;
+  --primary-light: #828282;
+  --primary-dark: #525252;
+  --secondary-light: #D9D9D9;
+}
+
+/* Container principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.espace {
+  padding: 50px;
+}
+
+/* Cabeçalho com imagem e cor de fundo */
+.products-header {
+  position: relative;
+  width: 100%;
+}
+
+.products-header img {
+  width: 100%; /* A imagem ocupa 100% da largura do cabeçalho */
+  height: 60%; /* Garante que a altura seja proporcional à largura */
+  display: block; /* Remove qualquer espaço em branco abaixo da imagem */
+  background-color: var(--secondary-color);
+}
+
+/* Nav dentro do cabeçalho */
+nav {
+  position: absolute; /* Posiciona o texto sobre a imagem */
+  top: 28%; /* Alinha verticalmente ao meio */
+  left: 50%; /* Alinha horizontalmente ao centro */
+  transform: translate(-50%, -50%); /* Ajusta para centralizar exatamente */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav h1 {
+  font-size: 30px;
+  color: var(--primary-color);
+  text-align: center;
+  padding: 10px;
+}
+
+/* Envoltório da barra de pesquisa */
+.search-wrapper {
+  display: flex;
+  align-items: center; /* Alinha verticalmente */
+  justify-content: flex-start; /* Alinha horizontalmente à esquerda */
+  width: 100%; /* Ocupa toda a largura */
+  max-width: 700px; /* Limita o tamanho máximo */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  margin-top: 20px; /* Espaço superior */
+  gap: 30px; /* Espaço entre a caveirinha e a barra */
+}
+
+/* Caveirinha */
+.caveirinha-icon {
+  width: 35px;
+  height: 30px;
+}
+
+/* Barra de pesquisa */
+.search-container {
+  display: flex;
+  align-items: center; /* Alinha verticalmente os itens */
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  padding: 3px 10px;
+  flex: 1; /* Faz a barra de pesquisa ocupar o espaço restante */
+}
+
+.search-input {
+  padding: 5px;
+  font-size: 15px;
+  width: 100%;  
+  border: none;
+}
+
+.search-input:focus {
+  outline: none; /* Remove a borda de foco */
+}
+
+
+.botao img {
+  width: 30px; /* Ajuste do tamanho da imagem */
+  height: 30px;
+  padding: 4px;
+}
+
+.search-button {
+  width: 50px;
+  height: 40px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  color: #8d2346;
+}
+
+/* Lista de produtos */
+.products-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 20px 0 20px; /* Distância de 20px dos cantos da tela */
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 15px;
+  background-color: var(--secondary-light); /* Fundo branco para o item */
+  border-radius: 0px; /* Bordas arredondadas */
+  margin-bottom: 10px; /* Espaçamento entre os itens */
+  box-shadow: 0 2px 5px var(--primary-light); /* Sombra */
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.delete-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Rodapé com botões */
+.products-footer {
+  display: flex;
+  justify-content: flex-end; /* Faz os botões ficarem no canto direito */
+  position: fixed; /* Fixa o rodapé na parte inferior da tela */
+  bottom: 20px; /* Distância de 20px do fundo da tela */
+  right: 20px; /* Distância de 20px do lado direito da tela */
+  gap: 10px;
+}
+
+.download-button,
+.add-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 11rem;
+  height: 3rem;
+}
+
+.download-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.add-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Pop-up para download */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+}
+
+.popup-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.popup-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-button {
+  padding: 10px 20px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  
+}

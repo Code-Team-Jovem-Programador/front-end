@@ -1,0 +1,195 @@
+/*Tela de cadastro geral*/
+.register-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /*Lado esquerdo - Reutilize as classes existentes da tela de login*/
+  .register-left {
+    flex: 0 0 53%;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+  }
+  
+  /*Imagem de fundo*/
+  .register-image {
+    width: 104%;
+    height: 100%;
+  }
+  
+  /*Slogan*/
+  .register-slogan {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-47%, -50%);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+  
+  /*Code Team*/
+  .register-slogan p {
+    margin-top: 10px;
+    text-wrap: nowrap;
+  }
+  
+  /*Lado direito*/
+  .register-right {
+    flex: 0 0 46%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+  
+  /*Estilização do formulário*/
+  .register-form {
+    width: 80%;
+    max-width: 400px;
+    padding: 30px;
+  }
+  
+  .register-form h3 {
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+    font-size: 28px;
+  }
+
+  /*Subtitulo de cadastro*/
+  .register-subtitle {
+    margin-bottom: 40px;
+    color: var(--primary-dark);
+    font-size: 0.92rem;
+  }
+  
+  /*espaço entre senha e label*/
+  .register-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-light);
+  }
+  
+  /*Dentro do input*/
+  .register-form input {
+    display: flex;
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    color: var(--primary-dark);
+    outline: none;
+  }
+
+  .register-form input:focus {
+    background-color: white; /* Altere a cor do fundo conforme necessário */
+    border: 1px solid var(--primary-color) /* Altere a cor da borda ao focar no campo */
+  }  
+  
+  /*Botão de cadastro*/
+  .register-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #742973;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  
+  /*Mudar cor do botão ao passar o mouse*/
+  .register-button:hover {
+    background-color: #581c54;
+  }
+
+  /* Spinner moderno */
+.spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid transparent;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  border-radius: 50%;
+  animation: modern-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/*regra do CSS usada para criar animações*/
+@keyframes modern-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.back-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1rem;
+  margin-left: 44%;
+  font-weight: bold;
+}
+
+@media (max-width: 900px) {
+  .register-container {
+    flex-direction: column; /* Coloca os elementos em coluna */
+  }
+  .register-image {
+    width: 100%;
+    background-color: var(--secondary-color); /* Cor de fundo caso necessário */
+  }
+
+  .register-slogan h2 {
+    font-size: 1.4rem; /* Ajusta o tamanho do texto */
+  }
+
+  .register-slogan p {
+    font-size: 0.8rem;
+  }
+
+  .register-right {
+    width: 100%;
+    margin-top: 25px; /* Adiciona espaçamento entre as seções */
+  }
+
+  .register-form {
+    width: 100%; /* O formulário ocupa toda a largura */
+    padding: 40px; /* Reduz o padding para telas menores */
+  }
+
+  .register-form h3 {
+    font-size: 1.6em; /* Ajusta o tamanho do título */
+  }
+
+  .register-subtitle {
+    font-size: 0.83em; /* Ajusta o tamanho do subtítulo */
+  }
+
+  .register-form input {
+    padding: 10px; /* Reduz o preenchimento interno dos inputs */
+    font-size: 0.9em; /* Ajusta o tamanho da fonte */
+  }
+
+  .register-button {
+    font-size: 1em; /* Ajusta o tamanho do texto do botão */
+    padding: 10px; /* Mantém o botão acessível em telas menores */
+  }
+
+  .back-link {
+    font-size: 0.8em; /* Ajusta o tamanho do link */
+    margin-left: 0;
+    text-align: center; /* Centraliza o link */
+    display: block;
+  }
+}

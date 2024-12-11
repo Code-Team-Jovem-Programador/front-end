@@ -7,7 +7,7 @@ const CriarProduto = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://gerenciador-estoque-prod.onrender.com/produtos/", produto, {
+      .post("http://127.0.0.1:8000/api/produtos/", produto, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

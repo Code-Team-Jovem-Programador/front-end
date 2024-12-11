@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -11,7 +10,6 @@ import ExportarPdf from './components/ExportarCsv';
 import ExportarXlsx from './components/ExportarXlsx';
 import RegisterForm from './components/RegisterForm';
 import ActivateAccount from './components/ActivateAcc'
-
 
 const App = () => {
   return (

@@ -3,8 +3,8 @@ import axios from "axios";
 const ExportarXlsx = () => {
     const exportarXlsx = () => {
       axios
-        .post(
-          "https://gerenciador-estoque-prod.onrender.com/api/export/xlsx/",
+        .get(
+          "http://127.0.0.1:8000/api/export/xlsx/",
           {},
           {
             headers: {
