@@ -57,7 +57,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
 }
 
 /*caixa lado direito*/
@@ -65,6 +64,7 @@
   width: 80%;
   max-width: 400px;
   padding: 30px;
+  margin-top: auto;
 }
 
 .login-form input:focus {
@@ -134,7 +134,7 @@
 }
 /*Ainda n tem cadastro*/
 .login-footer {
-  margin-top: 50%;
+  margin-top: 40%;
   text-align: center;
   color: var(--primary-dark);
 }
@@ -168,13 +168,13 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .login-container {
     flex-direction: column;
   }
 
   .login-image {
-    width: 100%;
+    width: 105%;
     background-color: var(--secondary-color);
   }
 
