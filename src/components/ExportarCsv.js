@@ -4,7 +4,7 @@ const ExportarCsv = () => {
   const exportarCsv = () => {
     axios
       .get(
-        "http://127.0.0.1:8000/api/export/csv/",
+        "https://gerenciador-estoque-back.onrender.com/api/export/csv/",
         {},
         {
           headers: {

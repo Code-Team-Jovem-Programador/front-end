@@ -30,7 +30,7 @@ const VerProdutos = () => {
     }
 
     axios
-      .get("http://127.0.0.1:8000/api/produtos", {
+      .get("https://gerenciador-estoque-back.onrender.com/api/produtos", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

@@ -3,7 +3,7 @@ import axios from "axios";
 const ExportarXlsx = () => {
   const exportarXlsx = () => {
     axios
-      .get("http://127.0.0.1:8000/api/export/xlsx/", {
+      .get("https://gerenciador-estoque-back.onrender.com/api/export/xlsx/", {
         responseType: "blob", // Certifique-se de especificar o tipo de resposta
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

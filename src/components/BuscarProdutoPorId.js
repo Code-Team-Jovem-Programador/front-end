@@ -7,7 +7,7 @@ const BuscarProdutoPorId = () => {
 
   const buscarProduto = () => {
     axios
-      .get(`http://127.0.0.1:8000/api/produtos/${produtoId}`, {
+      .get(`https://gerenciador-estoque-back.onrender.com/api/produtos/${produtoId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

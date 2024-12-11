@@ -4,7 +4,7 @@ const ExportarPdf = () => {
     const exportarPdf = () => {
       axios
         .get(
-          "http://127.0.0.1:8000/api/export/pdf/",
+          "https://gerenciador-estoque-back.onrender.com/api/export/pdf/",
           {},
           {
             headers: {

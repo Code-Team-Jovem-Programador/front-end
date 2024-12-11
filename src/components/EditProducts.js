@@ -13,7 +13,7 @@ const EditarProduto = ({ productId }) => {
   useEffect(() => {
     if (productId) {
       axios
-        .get(`http://127.0.0.1:8000/api/produtos/${productId}`, {
+        .get(`https://gerenciador-estoque-back.onrender.com/api/produtos/${productId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
@@ -28,7 +28,7 @@ const EditarProduto = ({ productId }) => {
   const updateData = (e) => {
     e.preventDefault();
     axios
-      .put(`http://127.0.0.1:8000/api/produtos/${productId}`, produto, {
+      .put(`https://gerenciador-estoque-back.onrender.com/api/produtos/${productId}`, produto, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

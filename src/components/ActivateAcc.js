@@ -13,7 +13,7 @@ const ActivateAccount = () => {
         const activateAccount = async () => {
             try {
                 const response = await axios.get(
-                    `http://127.0.0.1:8000/api/activate/${uidb64}/${token}/` 
+                    `https://gerenciador-estoque-back.onrender.com/api/activate/${uidb64}/${token}/` 
                 );            
             // try {
             //     const response = await axios.get(

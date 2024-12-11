@@ -16,7 +16,7 @@ const LoginForm = () => {
     setIsLoading(true); // Ativa o loading
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/token', {
+      const response = await axios.post('https://gerenciador-estoque-back.onrender.com/api/token', {
         username,
         password,
       });
