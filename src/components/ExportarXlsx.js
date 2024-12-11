@@ -3,8 +3,8 @@ import axios from "axios";
 const ExportarXlsx = () => {
     const exportarXlsx = () => {
       axios
-        .post(
-          "http://127.0.0.1:8000/api/xlsx/",
+        .get(
+          "http://127.0.0.1:8000/api/export/xlsx/",
           {},
           {
             headers: {

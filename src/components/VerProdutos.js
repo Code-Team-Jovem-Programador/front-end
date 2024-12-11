@@ -61,7 +61,7 @@ const VerProdutos = () => {
   // Função para deletar um produto
   const handleDelete = async (id) => {
     try {
-      const response = await api.delete(`/produtos/${id}`);
+      const response = await api.delete(`produtos/${id}`);
       alert("Produto deletado com sucesso!");
     } catch (error) {
       if (error.code === "ERR_NETWORK") {
