@@ -157,7 +157,7 @@ const VerProdutos = () => {
         {showPopupAdd && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <h2 className="popup-title">Editar</h2>
+            <h2 className="popup-title">Novo Produto</h2>
             <div className="popup-buttons">
               <CriarProduto/>
             </div>

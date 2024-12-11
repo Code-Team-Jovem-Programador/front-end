@@ -72,7 +72,7 @@ const EditarProduto = ({ productId }) => {
         value={produto.categoria}
         onChange={(e) => setProduto({ ...produto, categoria: e.target.value })}
       />
-      <button type="submit">Salvar</button>
+      <button type="submit">Salvar Alterações</button>
     </form>
   );
 };
