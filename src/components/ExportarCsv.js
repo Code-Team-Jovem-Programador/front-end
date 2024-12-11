@@ -23,7 +23,7 @@ const ExportarCsv = () => {
       .catch((error) => console.error(error));
   };
 
-  return <button onClick={exportarCsv}>Exportar para CSV</button>;
+  return <button onClick={exportarCsv} className="export-button">CSV</button>;
 };
 
 export default ExportarCsv;

@@ -58,7 +58,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 80px;
-}
+} 
 
 /*caixa lado direito*/
 .login-form {
@@ -134,7 +134,7 @@
 }
 /*Ainda n tem cadastro*/
 .login-footer {
-  margin-top: 50%;
+  margin-top: 40%;
   text-align: center;
   color: var(--primary-dark);
 }

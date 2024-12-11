@@ -9,7 +9,7 @@ import EditarProduto from "./EditProducts";
 
 import api from "./axiosConfig"; // Certifique-se de importar o arquivo correto
 import CriarProduto from "./CriarProduto";
-
+ 
 const VerProdutos = () => { 
   const [produtos, setProdutos] = useState([]); // Lista de produtos
   const [showPopup, setShowPopup] = useState(false); // Controle do pop-up
@@ -124,7 +124,6 @@ const VerProdutos = () => {
 
         </main>
       </div>
-  
 
       {/* Rodapé com botões */}
       <footer className="products-footer">
@@ -147,23 +146,21 @@ const VerProdutos = () => {
               <ExportarXlsx />
             </div>
             <button className="close-button" onClick={closePopup}>
-              Fechar
+              Cancelar
             </button>
           </div>
         </div>
       )}
 
-        {/* Pop-up para Adição de produtos */}
-        {showPopupAdd && (
-        <div className="popup-overlay">
-          <div className="popup-content">
+      {/* Pop-up para Adição de produtos */}
+      {showPopupAdd && (
+        <div className="popup-overlay-add">
+          <div className="popup-content-add">
+            <button className="close-icon" onClick={closePopupAdd}>×</button>
             <h2 className="popup-title">Novo Produto</h2>
-            <div className="popup-buttons">
-              <CriarProduto/>
-            </div>
-            <button className="close-button" onClick={closePopupAdd}>
-              Fechar
-            </button>
+              <div className="popup-buttons">
+                <CriarProduto />
+              </div>           
           </div>
         </div>
       )}
@@ -177,7 +174,7 @@ const VerProdutos = () => {
               <EditarProduto productId={selectedProductId} />
             </div>
             <button className="close-button" onClick={closePopupEdt}>
-              Fechar
+              Cancelar
             </button>
           </div>
         </div>
