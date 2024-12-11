@@ -16,13 +16,26 @@ const LoginForm = () => {
     setIsLoading(true); // Ativa o loading
 
     try {
-      const response = await axios.post('https://gerenciador-estoque-prod.onrender.com/api/token', {
+      const response = await axios.post('http://127.0.0.1:8000/api/token', {
         username,
         password,
       });
+
       const token = response.data.access;
-      localStorage.setItem('accessToken', token); // Armazena o token no localStorage
-      navigate('/produtos'); // Redireciona para VerProdutos
+
+      if (token) {
+        // Armazenar o token no localStorage
+        localStorage.setItem('accessToken', token);
+
+        // Confirmar se o token foi armazenado corretamente
+        console.log('Token armazenado:', localStorage.getItem('accessToken'));
+
+        // Redirecionar para a página de produtos
+        navigate('/produtos');
+      } else {
+        // Caso o token não esteja presente na resposta
+        setError('Token não retornado da API.');
+      }
     } catch (error) {
       setError('Erro ao fazer login. Verifique suas credenciais.');
     } finally {
@@ -72,6 +85,7 @@ const LoginForm = () => {
           <p className="login-footer">
             Ainda não tem cadastro? <a href="/register">Criar uma conta</a>
           </p>
+          {error && <p className="error-message">{error}</p>} {/* Exibe mensagem de erro */}
         </form>
       </div>
     </div>

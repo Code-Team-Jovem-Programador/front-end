@@ -4,7 +4,7 @@ const ExportarXlsx = () => {
     const exportarXlsx = () => {
       axios
         .post(
-          "https://gerenciador-estoque-prod.onrender.com/api/export/xlsx/",
+          "http://127.0.0.1:8000/api/xlsx/",
           {},
           {
             headers: {
