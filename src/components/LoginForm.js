@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css'; // Importa os estilos
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa o SweetAlert2
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false); // Estado para o loading
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const LoginForm = () => {
     setIsLoading(true); // Ativa o loading
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/token', {
+      const response = await axios.post('https://gerenciador-estoque-prod.onrender.com/api/token', {
         username,
         password,
       });
@@ -34,10 +34,20 @@ const LoginForm = () => {
         navigate('/produtos');
       } else {
         // Caso o token não esteja presente na resposta
-        setError('Token não retornado da API.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: 'Token não retornado da API.',
+        });
       }
     } catch (error) {
-      setError('Erro ao fazer login. Verifique suas credenciais.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro!',
+        text: 'Erro ao fazer login. Verifique suas credenciais.',
+        confirmButtonText: 'Tentar novamente',
+        confirmButtonColor: '#631E4D',
+      });
     } finally {
       setIsLoading(false); // Desativa o loading
     }
@@ -85,7 +95,6 @@ const LoginForm = () => {
           <p className="login-footer">
             Ainda não tem cadastro? <a href="/register">Criar uma conta</a>
           </p>
-          {error && <p className="error-message">{error}</p>} {/* Exibe mensagem de erro */}
         </form>
       </div>
     </div>

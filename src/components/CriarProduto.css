@@ -1,0 +1,111 @@
+/* Estilos para o ícone X no canto superior direito */
+.close-icon {
+  position: absolute;
+  top: 10px; /* Distância do topo */
+  right: 10px; /* Distância da borda direita */
+  font-size: 30px; /* Tamanho do ícone */
+  color: #812c66; /* Cor do X */
+  background: transparent; /* Fundo transparente */
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-icon:hover {
+  color: #601d4f; /* Cor do X quando o mouse passa por cima */
+}
+
+/* Estilos adicionais para o pop-up */
+.popup-overlay-add {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content-add {
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px;
+  width: 850px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 90%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Para permitir o posicionamento do ícone X */
+}
+  
+  .popup-title {
+    font-size: 25px;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .form-criarProduto {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Menor espaçamento entre os campos */
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  .label-cor {
+    background-color: var(--secondary-light);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 0.6px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .label-cor input {
+    font-size: 15px; /* Reduz o tamanho da fonte */
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+  }
+  
+  .label-descricao {
+    margin-top: 5px;
+  }
+  
+  .input-descricao {
+    background-color: var(--secondary-light);
+    border: none;
+    outline: none;
+    width: 100%; /* A largura do campo vai ocupar todo o espaço disponível */
+    padding: 10px;
+    box-shadow: 0 0.6px 4px rgba(0, 0, 0, 0.5);
+    height: 100px; /* Define a altura inicial do campo */
+    resize: vertical; /* Permite ao usuário redimensionar o campo verticalmente */
+    overflow-y: auto; /* Adiciona rolagem quando o conteúdo excede o campo */
+  }
+  
+  .btn-criarProduto {
+    background-color: #812c66;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 40%; /* Faz com que os botões ocupem 100% da largura disponível */
+    margin: 0 auto; /* Centraliza horizontalmente */
+  }
+  
+  .btn-criarProduto:hover {
+    background-color: #601d4f;
+  }

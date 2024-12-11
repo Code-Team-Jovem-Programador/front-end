@@ -23,7 +23,7 @@ const ExportarPdf = () => {
         .catch((error) => console.error(error));
     };
   
-    return <button onClick={exportarPdf}>Exportar para PDF</button>;
+    return <button onClick={exportarPdf} className="export-button">PDF</button>;
   };
   
   export default ExportarPdf;
