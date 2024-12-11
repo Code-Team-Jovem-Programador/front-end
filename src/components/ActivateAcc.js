@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 const ActivateAccount = () => {
     const [searchParams] = useSearchParams();
     const uidb64 = searchParams.get("uidb64");
     const token = searchParams.get("token");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const activateAccount = async () => {
@@ -18,6 +20,7 @@ const ActivateAccount = () => {
             //         `https://gerenciador-estoque-prod.onrender.com/api/activate/${uidb64}/${token}/` 
             //     );
                 alert("Conta ativada com sucesso!");
+                navigate('/');
             } catch (error) {
                 alert("Erro ao ativar conta. Link inválido ou expirado.");
             }

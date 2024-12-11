@@ -71,5 +71,4 @@ api.post("/export/pdf/")
   .then((response) => console.log("Exportado para PDF:", response.data))
   .catch((error) => console.error(error));
 
-
 export default api;
