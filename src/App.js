@@ -10,6 +10,7 @@ import ExportarPdf from './components/ExportarCsv';
 import ExportarXlsx from './components/ExportarXlsx';
 import RegisterForm from './components/RegisterForm';
 import ActivateAccount from './components/ActivateAcc'
+import EditarProduto from './components/EditProducts';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/register" element={<RegisterForm/>} />
         <Route path="/produtos" element={<VerProdutos />} />
         <Route path="/criarproduto" element={<CriarProduto/>} />
+        <Route path="/editarproduto" element={<EditarProduto/>} />
         <Route path="/buscarproduto" element={<BuscarProdutoPorId/>} />
         <Route path="/downloadcsv" element={<ExportarCsv/>} />
         <Route path="/downloadpdf" element={<ExportarPdf/>} />

@@ -5,14 +5,20 @@ import "./ExportarPopup.css"; // Estilo do pop-up
 import ExportarCsv from "./ExportarCsv";
 import ExportarXlsx from "./ExportarXlsx";
 import ExportarPdf from "./ExportarPdf";
+import EditarProduto from "./EditProducts";
 
 import api from "./axiosConfig"; // Certifique-se de importar o arquivo correto
+import CriarProduto from "./CriarProduto";
 
 const VerProdutos = () => { 
   const [produtos, setProdutos] = useState([]); // Lista de produtos
   const [showPopup, setShowPopup] = useState(false); // Controle do pop-up
+  const [showPopupAdd, setShowPopupAdd] = useState(false); // Controle do pop-up
+  const [showPopupEdt, setShowPopupEdt] = useState(false); // Controle do pop-up
   const [error, setError] = useState("");
 
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  
   // Buscar produtos ao carregar o componente
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -42,22 +48,6 @@ const VerProdutos = () => {
       });
   }, []);
   
-  // Função para editar um produto
-  const handleEdit = (productId) => {
-    const updatedData = {
-      nome: "Produto Atualizado",
-      descricao: "Descrição atualizada",
-      preco: 60.0,
-    };
-
-    api.put(`/produtos/${productId}/`, updatedData)
-      .then((response) => {
-        console.log("Produto atualizado:", response.data);
-        alert("Produto atualizado com sucesso!");
-      })
-      .catch((error) => console.error("Erro ao atualizar o produto:", error));
-  };
-
   // Função para deletar um produto
   const handleDelete = async (id) => {
     try {
@@ -74,9 +64,20 @@ const VerProdutos = () => {
     }
   };
 
-  // Funções para abrir e fechar o pop-up
+  // Funções para abrir e fechar o pop-up de download
   const openPopup = () => setShowPopup(true);
   const closePopup = () => setShowPopup(false);
+
+  // Funções para abrir e fechar o pop-up de adição de item
+  const openPopupAdd = () => setShowPopupAdd(true);
+  const closePopupAdd = () => setShowPopupAdd(false);
+
+  // Funções para abrir e fechar o pop-up de edição de item
+    const openPopupEdt = (id) => {
+      setSelectedProductId(id);
+      setShowPopupEdt(true);
+    };
+    const closePopupEdt = () => setShowPopupEdt(false);
 
   return (
     <div className="container">
@@ -108,7 +109,7 @@ const VerProdutos = () => {
             <div key={produto.id} className="product-item">
               <span>{produto.nome}</span>
               <div className="product-actions">
-                <button className="edit-button" onClick={() => handleEdit(produto.id)}>
+                <button className="edit-button" onClick={() => openPopupEdt(produto.id)}>
                   Editar
                 </button>
                 <button className="delete-button" onClick={() => handleDelete(produto.id)}>
@@ -130,7 +131,9 @@ const VerProdutos = () => {
         <button className="download-button" onClick={openPopup}>
           Download
         </button>
-        <button className="add-button">Adicionar</button>
+        <button className="add-button" onClick={openPopupAdd}>
+          Adicionar
+        </button>
       </footer>
 
       {/* Pop-up para download */}
@@ -149,6 +152,38 @@ const VerProdutos = () => {
           </div>
         </div>
       )}
+
+        {/* Pop-up para Adição de produtos */}
+        {showPopupAdd && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h2 className="popup-title">Editar</h2>
+            <div className="popup-buttons">
+              <CriarProduto/>
+            </div>
+            <button className="close-button" onClick={closePopupAdd}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Pop-up para edição de produtos */}
+      {showPopupEdt && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h2 className="popup-title">Editar</h2>
+            <div className="popup-buttons">
+              <EditarProduto productId={selectedProductId} />
+            </div>
+            <button className="close-button" onClick={closePopupEdt}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
+
+
     </div>
   );
 };
