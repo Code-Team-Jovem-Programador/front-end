@@ -21,7 +21,7 @@ const ExportarXlsx = () => {
       .catch((error) => console.error("Erro ao exportar o arquivo:", error));
   };
 
-  return <button onClick={exportarXlsx}>Exportar para XLSX</button>;
+  return <button onClick={exportarXlsx} className="export-button">XLSX</button>;
 };
 
 export default ExportarXlsx;

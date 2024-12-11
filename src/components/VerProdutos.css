@@ -7,7 +7,7 @@
   font-family: "Merriweather", serif;
 }
 
-:root {
+:root { 
   --primary-color: #631E4D;
   --secondary-color: #FFE6C9;
   --primary-light: #828282;
@@ -244,5 +244,7 @@ nav h1 {
 }
 
 @media (max-width: 900px) {
+
+  
   
 }

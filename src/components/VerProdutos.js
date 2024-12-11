@@ -9,7 +9,7 @@ import EditarProduto from "./EditProducts";
 
 import api from "./axiosConfig"; // Certifique-se de importar o arquivo correto
 import CriarProduto from "./CriarProduto";
-
+ 
 const VerProdutos = () => { 
   const [produtos, setProdutos] = useState([]); // Lista de produtos
   const [showPopup, setShowPopup] = useState(false); // Controle do pop-up
@@ -124,7 +124,6 @@ const VerProdutos = () => {
 
         </main>
       </div>
-  
 
       {/* Rodapé com botões */}
       <footer className="products-footer">

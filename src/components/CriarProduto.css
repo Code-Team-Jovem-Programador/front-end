@@ -1,10 +1,16 @@
 /* Estilos para o ícone X no canto superior direito */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Merriweather", serif;
+}
 .close-icon {
   position: absolute;
-  top: 10px; /* Distância do topo */
+  top: 0px; /* Distância do topo */
   right: 10px; /* Distância da borda direita */
-  font-size: 30px; /* Tamanho do ícone */
-  color: #812c66; /* Cor do X */
+  font-size: 40px; /* Tamanho do ícone */
+  color: var(--primary-color); /* Cor do X */
   background: transparent; /* Fundo transparente */
   border: none;
   cursor: pointer;
