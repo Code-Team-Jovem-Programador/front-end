@@ -11,6 +11,7 @@ import ExportarXlsx from './components/ExportarXlsx';
 import RegisterForm from './components/RegisterForm';
 import ActivateAccount from './components/ActivateAcc'
 import EditarProduto from './components/EditProducts';
+import TrocarSenha from './components/TrocarSenha';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path="" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm/>} />
+        <Route path="/mudarsenha" element={<TrocarSenha/>} />
         <Route path="/produtos" element={<VerProdutos />} />
         <Route path="/criarproduto" element={<CriarProduto/>} />
         <Route path="/editarproduto" element={<EditarProduto/>} />

@@ -32,7 +32,7 @@ const RegisterForm = () => {
         confirmButtonColor: '#631E4D',
       });
 
-      setTimeout(() => navigate('/login'), 2000); // Redireciona para o login após sucesso
+      setTimeout(() => navigate('/'), 2000); // Redireciona para o login após sucesso
     } catch (error) {
       // Alerta de erro com SweetAlert2
       Swal.fire({

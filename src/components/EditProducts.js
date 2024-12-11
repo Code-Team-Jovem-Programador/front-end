@@ -3,11 +3,11 @@ import axios from "axios";
 
 const EditarProduto = ({ productId }) => {
   const [produto, setProduto] = useState({
-    nome: "",
-    descricao: "",
+    nome: "Loading...",
+    descricao: "Loading...",
     preco: 0,
     quantidades: 0,
-    categoria: "",
+    categoria: "Loading...",
   });
 
   useEffect(() => {
