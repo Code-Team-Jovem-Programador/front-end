@@ -6,6 +6,7 @@ import ExportarCsv from "./ExportarCsv";
 import ExportarXlsx from "./ExportarXlsx";
 import ExportarPdf from "./ExportarPdf";
 import EditarProduto from "./EditProducts";
+import Swal from 'sweetalert2';
 
 import api from "./axiosConfig"; // Certifique-se de importar o arquivo correto
 import CriarProduto from "./CriarProduto";
@@ -47,22 +48,50 @@ const VerProdutos = () => {
         console.error(error);
       });
   }, []);
+
   
   // Função para deletar um produto
   const handleDelete = async (id) => {
-    try {
-      const response = await api.delete(`produtos/${id}`);
-      alert("Produto deletado com sucesso!");
-    } catch (error) {
-      if (error.code === "ERR_NETWORK") {
-        console.error("Erro de rede. Verifique a conexão ou a URL do servidor.");
-      } else if (error.response) {
-        console.error(`Erro do servidor: ${error.response.status} - ${error.response.data}`);
-      } else {
-        console.error("Erro desconhecido:", error.message);
+    // Primeiro exibe o SweetAlert com a confirmação
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você não poderá reverter isso!",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, delete isso!",
+      color: "#631E4D"
+    }).then(async (result) => {
+      // Se o usuário confirmar a exclusão
+      if (result.isConfirmed) {
+        try {
+          // Realiza a requisição de delete
+          const response = await api.delete(`produtos/${id}`);
+          
+          // Exibe o SweetAlert de sucesso
+          Swal.fire({
+            title: "Deletado!",
+            text: "Seu produto foi deletado.",
+            icon: "success"
+          });
+  
+          // Atualiza a lista de produtos após a exclusão, se necessário
+          setProdutos(produtos.filter(produto => produto.id !== id));
+        } catch (error) {
+          if (error.code === "ERR_NETWORK") {
+            console.error("Erro de rede. Verifique a conexão ou a URL do servidor.");
+          } else if (error.response) {
+            console.error(`Erro do servidor: ${error.response.status} - ${error.response.data}`);
+          } else {
+            console.error("Erro desconhecido:", error.message);
+          }
+        }
       }
-    }
+    });
   };
+  
 
   // Funções para abrir e fechar o pop-up de download
   const openPopup = () => setShowPopup(true);
@@ -167,15 +196,13 @@ const VerProdutos = () => {
 
       {/* Pop-up para edição de produtos */}
       {showPopupEdt && (
-        <div className="popup-overlay">
-          <div className="popup-content">
+        <div className="popup-overlay-add">
+          <div className="popup-content-add">
+          <button className="close-icon" onClick={closePopupEdt}>×</button>
             <h2 className="popup-title">Editar</h2>
             <div className="popup-buttons">
               <EditarProduto productId={selectedProductId} />
             </div>
-            <button className="close-button" onClick={closePopupEdt}>
-              Cancelar
-            </button>
           </div>
         </div>
       )}

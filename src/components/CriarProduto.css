@@ -56,7 +56,7 @@
     text-align: center;
   }
   
-  .form-criarProduto {
+  .form-criarProduto, .form-editarProduto {
     display: flex;
     flex-direction: column;
     gap: 15px; /* Menor espaçamento entre os campos */
@@ -99,7 +99,7 @@
     overflow-y: auto; /* Adiciona rolagem quando o conteúdo excede o campo */
   }
   
-  .btn-criarProduto {
+  .btn-criarProduto, .btn-editarProduto {
     background-color: #812c66;
     color: white;
     padding: 15px;

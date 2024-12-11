@@ -234,15 +234,6 @@ nav h1 {
   cursor: pointer;
 }
 
-.close-button {
-  padding: 10px 20px;
-  background-color: #ccc;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
 @media (max-width: 900px) {
 
   
