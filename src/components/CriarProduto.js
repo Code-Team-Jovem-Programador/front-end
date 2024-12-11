@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const CriarProduto = () => {
-  const [produto, setProduto] = useState({ nome: "", descricao: "", preco: "" });
+  const [produto, setProduto] = useState({ nome: "", descricao: "", preco: "", quantidades: "", categoria: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,9 +32,21 @@ const CriarProduto = () => {
       />
       <input
         type="number"
+        placeholder="Quantidade"
+        value={produto.quantidades}
+        onChange={(e) => setProduto({ ...produto, quantidades: e.target.value })}
+      />
+      <input
+        type="number"
         placeholder="Preço"
         value={produto.preco}
         onChange={(e) => setProduto({ ...produto, preco: e.target.value })}
+      />      
+      <input
+        type="text"
+        placeholder="Categoria"
+        value={produto.categoria}
+        onChange={(e) => setProduto({ ...produto, categoria: e.target.value })}
       />
       <button type="submit">Criar Produto</button>
     </form>
