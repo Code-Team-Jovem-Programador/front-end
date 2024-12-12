@@ -1,0 +1,65 @@
+/* src/components/RelatorioProduto.css */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  text-align: left;
+  overflow: hidden;
+}
+
+.popup-title {
+  font-size: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+p {
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.keyword {
+  color: var(--primary-color); 
+  font-weight: bold;
+}
+
+/* Ajustando o overflow para a descrição */
+.description {
+  max-height: 200px;  
+  overflow-y: auto;   /* Habilita a barra de rolagem vertical quando necessário */
+  margin-bottom: 30px;
+}
+
+/* Botão de Fechar */
+.close-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.close-button:hover {
+  background: #581c54;
+}

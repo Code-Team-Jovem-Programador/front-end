@@ -21,11 +21,6 @@
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  overflow-y: auto;
-}
-
-.espace {
-  padding: 50px;
 }
 
 /* Cabeçalho com imagem e cor de fundo */
@@ -36,7 +31,7 @@
 
 .products-header img {
   width: 100%; /* A imagem ocupa 100% da largura do cabeçalho */
-  height: 60%; /* Garante que a altura seja proporcional à largura */
+  height: 70%; /* Garante que a altura seja proporcional à largura */
   display: block; /* Remove qualquer espaço em branco abaixo da imagem */
   background-color: var(--secondary-color);
 }
@@ -44,7 +39,7 @@
 /* Nav dentro do cabeçalho */
 nav {
   position: absolute; /* Posiciona o texto sobre a imagem */
-  top: 28%; /* Alinha verticalmente ao meio */
+  top: 30%; /* Alinha verticalmente ao meio */
   left: 50%; /* Alinha horizontalmente ao centro */
   transform: translate(-50%, -50%); /* Ajusta para centralizar exatamente */
   width: 100%;
@@ -68,7 +63,8 @@ nav h1 {
   width: 100%; /* Ocupa toda a largura */
   max-width: 700px; /* Limita o tamanho máximo */
   margin: 0 auto; /* Centraliza horizontalmente */
-  margin-top: 20px; /* Espaço superior */
+  margin-top: 10px; /* Espaço superior */
+  margin-bottom: 30px;
   gap: 30px; /* Espaço entre a caveirinha e a barra */
 }
 
@@ -118,11 +114,20 @@ nav h1 {
   color: #8d2346;
 }
 
-/* Lista de produtos */
+/* Lista de produtos - Parte rolável */
+.products-main {
+  padding: 0 20px 8px; /* espaço para o cabeçalho fixo e rodapé fixo */
+  overflow-y: auto; /* permite rolar apenas a lista de produtos */
+  flex-grow: 1; /* Faz a área da lista ocupar o espaço disponível */
+  height: calc(100vh - 140px); /* Ajusta para a altura total da tela, considerando o cabeçalho e rodapé fixos */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
 .products-list {
   list-style: none;
+  font-weight: bold;
   padding: 0;
-  margin: 20px 20px 0 20px; /* Distância de 20px dos cantos da tela */
+  margin: 8px 20px 20px; /* Distância de 20px dos cantos da tela */
 }
 
 .product-item {
@@ -131,10 +136,19 @@ nav h1 {
   align-items: center;
   padding: 6px 15px;
   background-color: var(--secondary-light); /* Fundo branco para o item */
-  border-radius: 0px; /* Bordas arredondadas */
   margin-bottom: 10px; /* Espaçamento entre os itens */
   box-shadow: 0 2px 5px var(--primary-light); /* Sombra */
 }
+
+.product-item span {
+  display: block; /* Garante que o nome ocupe uma linha inteira */
+  white-space: nowrap; /* Impede a quebra de linha */
+  overflow: hidden; /* Oculta qualquer conteúdo que ultrapasse o limite */
+  text-overflow: ellipsis; /* Adiciona "..." no final do texto quando ele for truncado */
+  max-width: 100%; /* Garante que o texto ocupe até a largura máxima disponível */
+  width: 100%; /* Ajusta a largura do texto para não ultrapassar a tela */
+}
+
 
 .product-actions {
   display: flex;
@@ -160,16 +174,25 @@ nav h1 {
   color: white;
 }
 
-/* Rodapé com botões */
+/* Rodapé fixo com botões */
+
+/* Rodapé fixo com fundo branco e largura total */
+/* Rodapé fixo com fundo branco e largura total */
 .products-footer {
-  display: flex;
-  justify-content: flex-end; /* Faz os botões ficarem no canto direito */
-  position: fixed; /* Fixa o rodapé na parte inferior da tela */
-  bottom: 20px; /* Distância de 20px do fundo da tela */
-  right: 20px; /* Distância de 20px do lado direito da tela */
-  gap: 10px;
+  display: flex; /* Alinha os botões na horizontal */
+  justify-content: center; /* Centraliza os botões */
+  align-items: center; /* Alinha os botões verticalmente ao centro */
+  position: relative; /* Fixa o rodapé na parte inferior da tela */
+  bottom: 0; /* Coloca o rodapé no fundo da tela */
+  left: 0; /* Faz com que o rodapé ocupe a largura inteira */
+  width: 100%; /* Faz o rodapé ocupar toda a largura da tela */
+  background-color: white; /* Fundo branco */
+  padding: 10px 0; /* Ajuste do padding para dar mais espaço ao redor dos botões */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+  z-index: 10; /* Garante que o rodapé fique acima do conteúdo */
 }
 
+/* Botões de Download e Adicionar */
 .download-button,
 .add-button {
   padding: 10px 20px;
@@ -180,6 +203,7 @@ nav h1 {
   cursor: pointer;
   width: 11rem;
   height: 3rem;
+  margin: 0 10px; /* Espaçamento entre os botões */
 }
 
 .download-button {
@@ -191,6 +215,8 @@ nav h1 {
   background-color: var(--primary-color);
   color: white;
 }
+
+
 
 /* Pop-up para download */
 .popup-overlay {
@@ -234,8 +260,41 @@ nav h1 {
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
+/* Responsivo para telas menores que 700px */
+@media (max-width: 700px) {
+  .search-wrapper {
+    width: 90%;
+    align-items: center;
+    margin-top: 7%;
+    gap: 15px;
+  }
 
-  
-  
+  .search-container {
+    width: 100%;
+  }
+
+  .products-list {
+    margin: 8px 0 0; /* Distância de 20px dos cantos da tela */
+  }
+
+  .download-button,
+  .add-button {
+    width: 90%; /* Faz os botões ocuparem 90% da largura */
+    max-width: 300px; /* Limita a largura máxima */
+    margin: 5px 20px 0; /* Adiciona espaçamento entre os botões */
+  }
+
+  .products-main {
+    padding: 0 15px 80px; /* Ajusta o padding para uma tela menor */
+    height: calc(100vh - 170px); /* Ajusta a altura para considerar o rodapé fixo */
+  }
+
+  .products-header h1 {
+    margin-top: 6%;
+    font-size: 25px;
+  }
+
+  .products-header img {
+    height: 150%; /* Ajusta a altura da imagem do cabeçalho */
+  }
 }

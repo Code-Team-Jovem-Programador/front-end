@@ -79,7 +79,7 @@
     font-size: 15px; /* Reduz o tamanho da fonte */
     border: none;
     outline: none;
-    background-color: transparent;
+    background-color: var(--secondary-light);
     width: 100%;
   }
   

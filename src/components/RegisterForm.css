@@ -141,21 +141,22 @@
   font-weight: bold;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .register-container {
     flex-direction: column; /* Coloca os elementos em coluna */
   }
   .register-image {
-    width: 100%;
+    width: 106%;
     background-color: var(--secondary-color); /* Cor de fundo caso necessário */
   }
 
   .register-slogan h2 {
+    margin-top: 9%;
     font-size: 1.4rem; /* Ajusta o tamanho do texto */
   }
 
   .register-slogan p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .register-right {

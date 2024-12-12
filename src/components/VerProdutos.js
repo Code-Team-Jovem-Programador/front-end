@@ -7,19 +7,20 @@ import ExportarXlsx from "./ExportarXlsx";
 import ExportarPdf from "./ExportarPdf";
 import EditarProduto from "./EditProducts";
 import Swal from 'sweetalert2';
-
-import api from "./axiosConfig"; // Certifique-se de importar o arquivo correto
+import api from "./axiosConfig";
 import CriarProduto from "./CriarProduto";
- 
-const VerProdutos = () => { 
-  const [produtos, setProdutos] = useState([]); // Lista de produtos
-  const [showPopup, setShowPopup] = useState(false); // Controle do pop-up
-  const [showPopupAdd, setShowPopupAdd] = useState(false); // Controle do pop-up
-  const [showPopupEdt, setShowPopupEdt] = useState(false); // Controle do pop-up
-  const [error, setError] = useState("");
+import RelatorioProduto from "./RelatorioProduto"; // Importe o componente do relatório
 
+const VerProdutos = () => {
+  const [produtos, setProdutos] = useState([]); // Lista de produtos
+  const [showPopup, setShowPopup] = useState(false); // Controle do pop-up de download
+  const [showPopupAdd, setShowPopupAdd] = useState(false); // Controle do pop-up de adição
+  const [showPopupEdt, setShowPopupEdt] = useState(false); // Controle do pop-up de edição
+  const [error, setError] = useState("");
   const [selectedProductId, setSelectedProductId] = useState(null);
-  
+  const [produtoSelecionado, setProdutoSelecionado] = useState(null); // Produto selecionado para o relatório
+  const [showRelatorio, setShowRelatorio] = useState(false); // Controle do pop-up de relatório
+
   // Buscar produtos ao carregar o componente
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -49,35 +50,31 @@ const VerProdutos = () => {
       });
   }, []);
 
-  
   // Função para deletar um produto
   const handleDelete = async (id) => {
-    // Primeiro exibe o SweetAlert com a confirmação
     Swal.fire({
       title: "Você tem certeza?",
       text: "Você não poderá reverter isso!",
       icon: "warning",
+      iconColor: "#941d1d",
       showCancelButton: true,
       cancelButtonText: "Cancelar",
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#631E4D",
+      cancelButtonColor: "#631E4D",
       confirmButtonText: "Sim, delete isso!",
-      color: "#631E4D"
+      color: "#3d3b3b"
     }).then(async (result) => {
-      // Se o usuário confirmar a exclusão
       if (result.isConfirmed) {
         try {
           // Realiza a requisição de delete
-          const response = await api.delete(`produtos/${id}`);
+          await api.delete(`produtos/${id}`);
           
-          // Exibe o SweetAlert de sucesso
           Swal.fire({
             title: "Deletado!",
             text: "Seu produto foi deletado.",
-            icon: "success"
+            icon: "success",
           });
-  
-          // Atualiza a lista de produtos após a exclusão, se necessário
+
           setProdutos(produtos.filter(produto => produto.id !== id));
         } catch (error) {
           if (error.code === "ERR_NETWORK") {
@@ -91,34 +88,40 @@ const VerProdutos = () => {
       }
     });
   };
-  
 
-  // Funções para abrir e fechar o pop-up de download
+  // Funções para abrir e fechar os pop-ups
   const openPopup = () => setShowPopup(true);
   const closePopup = () => setShowPopup(false);
-
-  // Funções para abrir e fechar o pop-up de adição de item
   const openPopupAdd = () => setShowPopupAdd(true);
   const closePopupAdd = () => setShowPopupAdd(false);
+  const openPopupEdt = (id) => {
+    setSelectedProductId(id);
+    setShowPopupEdt(true);
+  };
+  const closePopupEdt = () => setShowPopupEdt(false);
 
-  // Funções para abrir e fechar o pop-up de edição de item
-    const openPopupEdt = (id) => {
-      setSelectedProductId(id);
-      setShowPopupEdt(true);
-    };
-    const closePopupEdt = () => setShowPopupEdt(false);
+  // Função para exibir o relatório de um produto
+  const mostrarRelatorio = (produto) => {
+    setProdutoSelecionado(produto);
+    setShowRelatorio(true);
+  };
+
+  // Função para fechar o relatório
+  const fecharRelatorio = () => {
+    setShowRelatorio(false);
+  };
 
   return (
     <div className="container">
       {/* Cabeçalho da página */}
       <header className="products-header">
-        <img src="/cabecalho.png"></img>
+        <img src="/cabecalho.png" alt="Cabeçalho" />
         <nav>
           <h1>Produtos</h1>
         </nav>
       </header>
-      {/* fim do cabeçalho */}
-      {/* barra de pesquisa */}
+
+      {/* Barra de pesquisa */}
       <div className="search-wrapper">
         <img src="/caveirinha.png" className="caveirinha-icon" alt="Caveirinha" />
         <div className="search-container">
@@ -130,29 +133,31 @@ const VerProdutos = () => {
           </div>
         </div>
       </div>
-            {/* Lista de produtos */}
-      <div className="espace">
-        <main className="products-list">
-        {produtos.length > 0 ? (
-          produtos.map((produto) => (
-            <div key={produto.id} className="product-item">
-              <span>{produto.nome}</span>
-              <div className="product-actions">
-                <button className="edit-button" onClick={() => openPopupEdt(produto.id)}>
-                  Editar
-                </button>
-                <button className="delete-button" onClick={() => handleDelete(produto.id)}>
-                  Deletar
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>Nenhum produto encontrado.</p>
-        )}
 
-        </main>
-      </div>
+      {/* Lista de produtos */}
+      <main className="products-main">
+        <div className="products-list">
+          {produtos.length > 0 ? (
+            produtos.map((produto) => (
+              <div key={produto.id} className="product-item">
+                <span onClick={() => mostrarRelatorio(produto)} style={{ cursor: "pointer" }}>
+                  {produto.nome}
+                </span>
+                <div className="product-actions">
+                  <button className="edit-button" onClick={() => openPopupEdt(produto.id)}>
+                    Editar
+                  </button>
+                  <button className="delete-button" onClick={() => handleDelete(produto.id)}>
+                    Deletar
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>Nenhum produto encontrado.</p>
+          )}
+        </div>
+      </main>
 
       {/* Rodapé com botões */}
       <footer className="products-footer">
@@ -181,24 +186,24 @@ const VerProdutos = () => {
         </div>
       )}
 
-      {/* Pop-up para Adição de produtos */}
+      {/* Pop-up para adição de produto */}
       {showPopupAdd && (
         <div className="popup-overlay-add">
           <div className="popup-content-add">
             <button className="close-icon" onClick={closePopupAdd}>×</button>
             <h2 className="popup-title">Novo Produto</h2>
-              <div className="popup-buttons">
-                <CriarProduto />
-              </div>           
+            <div className="popup-buttons">
+              <CriarProduto />
+            </div>           
           </div>
         </div>
       )}
 
-      {/* Pop-up para edição de produtos */}
+      {/* Pop-up para edição de produto */}
       {showPopupEdt && (
         <div className="popup-overlay-add">
           <div className="popup-content-add">
-          <button className="close-icon" onClick={closePopupEdt}>×</button>
+            <button className="close-icon" onClick={closePopupEdt}>×</button>
             <h2 className="popup-title">Editar</h2>
             <div className="popup-buttons">
               <EditarProduto productId={selectedProductId} />
@@ -207,10 +212,15 @@ const VerProdutos = () => {
         </div>
       )}
 
-
+      {/* Pop-up de relatório do produto */}
+      {showRelatorio && produtoSelecionado && (
+        <RelatorioProduto
+          produto={produtoSelecionado}
+          onClose={fecharRelatorio}
+        />
+      )}
     </div>
   );
 };
 
 export default VerProdutos;
-
