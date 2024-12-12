@@ -47,17 +47,17 @@ const BuscarProdutoPorId = () => {
         <div className="botao">
           <button className="search-button" onClick={buscarProduto}>
             <img src="/pesquisar.png" alt="Imagem do botão" />
-            {loading ? "Carregando..." : "Buscar Produto"}
           </button>
-          {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+        </div>
+      </div>
+      {loading ? "Carregando...":""}
+      {error && <p>{error}</p>}
           {produto && (
             <div style={{ marginTop: "20px", textAlign: "left" }}>
               <h2>Nome: {produto.nome}</h2>
               <p>Descrição: {produto.descricao}</p>
             </div>
           )}
-        </div>
-      </div>
     </div>
   );
 };
