@@ -1,36 +1,63 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./VerProdutos.css"; // Estilo da página
 
 const BuscarProdutoPorId = () => {
   const [produtoId, setProdutoId] = useState("");
   const [produto, setProduto] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const buscarProduto = () => {
+    if (!produtoId.trim()) {
+      setError("Por favor, insira um ID válido.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    setProduto(null);
+
     axios
       .get(`https://gerenciador-estoque-back.onrender.com/api/produtos/${produtoId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
-      .then((response) => setProduto(response.data))
-      .catch((error) => console.error(error));
+      .then((response) => {
+        setProduto(response.data);
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          setError("Produto não encontrado.");
+        } else {
+          setError("Ocorreu um erro ao buscar o produto.");
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="ID do Produto"
-        value={produtoId}
-        onChange={(e) => setProdutoId(e.target.value)}
-      />
-      <button onClick={buscarProduto}>Buscar Produto</button>
-      {produto && (
-        <div>
-          <h2>{produto.nome}</h2>
-          <p>{produto.descricao}</p>
+    <div className="search-wrapper">
+      <img src="/caveirinha.png" className="caveirinha-icon" alt="Caveirinha" />
+      <div className="search-container">
+        <input type="text" placeholder="Pesquisar" value={produtoId} onChange={(e) => setProdutoId(e.target.value)} className="search-input" />
+        <div className="botao">
+          <button className="search-button" onClick={buscarProduto}>
+            <img src="/pesquisar.png" alt="Imagem do botão" />
+            {loading ? "Carregando..." : "Buscar Produto"}
+          </button>
+          {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+          {produto && (
+            <div style={{ marginTop: "20px", textAlign: "left" }}>
+              <h2>Nome: {produto.nome}</h2>
+              <p>Descrição: {produto.descricao}</p>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

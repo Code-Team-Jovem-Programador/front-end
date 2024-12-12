@@ -6,6 +6,7 @@ import ExportarCsv from "./ExportarCsv";
 import ExportarXlsx from "./ExportarXlsx";
 import ExportarPdf from "./ExportarPdf";
 import EditarProduto from "./EditProducts";
+import BuscarProdutoPorId from "./BuscarProdutoPorId";
 import Swal from 'sweetalert2';
 
 import api from "./axiosConfig"; // Certifique-se de importar o arquivo correto
@@ -109,26 +110,30 @@ const VerProdutos = () => {
     const closePopupEdt = () => setShowPopupEdt(false);
 
   return (
-    <div className="container">
-      {/* Cabeçalho da página */}
-      <header className="products-header">
-        <img src="/cabecalho.png"></img>
-        <nav>
-          <h1>Produtos</h1>
-        </nav>
-      </header>
-      {/* fim do cabeçalho */}
-      {/* barra de pesquisa */}
-      <div className="search-wrapper">
-        <img src="/caveirinha.png" className="caveirinha-icon" alt="Caveirinha" />
-        <div className="search-container">
-          <input type="text" placeholder="Pesquisar" className="search-input" />
-          <div className="botao">
-            <button className="search-button">
-              <img src="/pesquisar.png" alt="Imagem do botão" />
-            </button>
-          </div>
-        </div>
+    // <div className="container">
+    //   {/* Cabeçalho da página */}
+    //   <header className="products-header">
+    //     <img src="/cabecalho.png"></img>
+    //     <nav>
+    //       <h1>Produtos</h1>
+    //     </nav>
+    //   </header>
+    //   {/* fim do cabeçalho */}
+    //   {/* barra de pesquisa */}
+    //   <div className="search-wrapper">
+    //     <img src="/caveirinha.png" className="caveirinha-icon" alt="Caveirinha" />
+    //     <div className="search-container">
+    //       <input type="text" placeholder="Pesquisar" className="search-input" />
+    //       <div className="botao">
+    //         <button className="search-button">
+    //           <img src="/pesquisar.png" alt="Imagem do botão" />
+    //         </button>
+    //       </div>
+    //     </div>
+    //   </div>
+
+      <div className="buscar-produto-por-id">
+        <BuscarProdutoPorId />
       </div>
             {/* Lista de produtos */}
       <div className="espace">
